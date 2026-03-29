@@ -1,107 +1,449 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Thaís & Renan</title>
   <style>
+    :root {
+      --bg: #fff8f8;
+      --surface: rgba(255, 255, 255, 0.88);
+      --surface-strong: #ffffff;
+      --text: #4e4046;
+      --muted: #7d6871;
+      --primary: #b76e79;
+      --primary-dark: #9d5965;
+      --line: #f0d8de;
+      --shadow: 0 18px 50px rgba(132, 84, 96, 0.12);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: 'Georgia', serif;
-      background: #fff5f7;
-      color: #4a3f45;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, #fffefe 0%, #fff6f7 35%, #fff1f4 100%);
     }
-    header {
-      text-align: center;
-      padding: 80px 20px;
-      background: white;
+
+    a {
+      color: inherit;
     }
-    h1 {
-      font-size: 3rem;
-      margin: 0;
+
+    .container {
+      width: min(1100px, calc(100% - 32px));
+      margin: 0 auto;
     }
-    .date {
-      margin-top: 20px;
-      font-size: 1.2rem;
-      color: #a06a78;
+
+    .hero {
+      position: relative;
+      padding: 28px 0 56px;
+      overflow: hidden;
     }
-    section {
-      max-width: 800px;
-      margin: 30px auto;
-      background: white;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(8px);
+      z-index: 0;
     }
-    h2 {
-      margin-top: 0;
+
+    .hero::before {
+      width: 260px;
+      height: 260px;
+      background: rgba(231, 185, 195, 0.3);
+      top: -70px;
+      left: -70px;
     }
-    .btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 20px;
-      background: #d46a7e;
-      color: white;
+
+    .hero::after {
+      width: 320px;
+      height: 320px;
+      background: rgba(248, 220, 226, 0.6);
+      right: -110px;
+      top: 10px;
+    }
+
+    .hero-card {
+      position: relative;
+      z-index: 1;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.95), rgba(255,248,250,0.9));
+      border: 1px solid rgba(240, 216, 222, 0.9);
+      box-shadow: var(--shadow);
+      border-radius: 36px;
+      padding: 28px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 38px;
+    }
+
+    .topbar nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .pill-link {
       text-decoration: none;
-      border-radius: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.96rem;
     }
-    .btn-secondary {
-      background: #eee;
-      color: #444;
-    }
-    footer {
+
+    .hero-content {
       text-align: center;
+      padding: 30px 12px 16px;
+    }
+
+    .eyebrow {
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      color: var(--primary);
+      margin: 0 0 18px;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 7vw, 5.4rem);
+      line-height: 0.95;
+      margin: 0;
+      font-weight: 600;
+      color: #5b4650;
+    }
+
+    .ampersand {
+      display: block;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: #c38a94;
+      margin: 10px 0;
+      font-style: italic;
+    }
+
+    .hero-subtitle {
+      margin: 22px auto 0;
+      max-width: 720px;
+      font-size: 1.08rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .hero-highlight {
+      margin: 30px auto 0;
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #fff8fa, #fff1f4);
+      border: 1px solid var(--line);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
+      font-size: 1rem;
+      color: #7c5a65;
+    }
+
+    .hero-actions {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      border: 1px solid transparent;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(180deg, #c67d89, var(--primary));
+      color: white;
+      box-shadow: 0 12px 28px rgba(183, 110, 121, 0.25);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.85);
+      border-color: var(--line);
+      color: var(--primary-dark);
+    }
+
+    main {
+      padding-bottom: 64px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .section {
+      background: var(--surface);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(240, 216, 222, 0.9);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius-xl);
       padding: 30px;
-      font-size: 0.9rem;
-      color: #888;
+      margin-top: 22px;
+    }
+
+    .section h2 {
+      margin: 0 0 12px;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #5b4650;
+    }
+
+    .section p {
+      margin: 0;
+      line-height: 1.85;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .section-intro {
+      margin-bottom: 22px;
+      max-width: 760px;
+    }
+
+    .info-card {
+      background: var(--surface-strong);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+
+    .info-card h3 {
+      margin: 0 0 14px;
+      font-size: 1.4rem;
+      color: #624b54;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .info-list strong {
+      color: var(--text);
+    }
+
+    .quote-box {
+      text-align: center;
+      padding: 34px 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.86), rgba(255,246,248,0.92));
+    }
+
+    .quote-box p {
+      font-size: 1.22rem;
+      color: #735962;
+      font-style: italic;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .small-note {
+      margin-top: 12px;
+      font-size: 0.95rem;
+      color: #9a7b85;
+    }
+
+    .gift-placeholder {
+      margin-top: 16px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: #fffafb;
+      border: 1px dashed #e9c8d0;
+      color: #8b6c75;
+    }
+
+    footer {
+      padding: 22px 0 40px;
+      text-align: center;
+      color: #92757e;
+      font-size: 0.96rem;
+    }
+
+    @media (max-width: 820px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        padding: 20px;
+      }
+
+      .section {
+        padding: 24px;
+      }
     }
   </style>
 </head>
 <body>
+  <header class="hero">
+    <div class="container hero-card">
+      <div class="topbar">
+        <nav>
+          <a class="pill-link" href="#historia">Nossa história</a>
+          <a class="pill-link" href="#detalhes">Detalhes</a>
+          <a class="pill-link" href="#presenca">Confirmação</a>
+          <a class="pill-link" href="#presentes">Presentes</a>
+        </nav>
+      </div>
 
-<header>
-  <h1>Thaís & Renan</h1>
-  <div class="date">12 de Junho de 2027 • Criciúma</div>
-</header>
+      <div class="hero-content">
+        <p class="eyebrow">Nosso casamento</p>
+        <h1>
+          Thaís
+          <span class="ampersand">&amp;</span>
+          Renan
+        </h1>
+        <p class="hero-subtitle">
+          Com muito amor e alegria, criamos este espaço para compartilhar com vocês
+          os detalhes de um dos dias mais especiais das nossas vidas.
+        </p>
+        <div class="hero-highlight">
+          <span>12 de junho de 2027</span>
+          <span>•</span>
+          <span>Criciúma</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://wa.me/5548999405772">Confirmar presença</a>
+          <a class="btn btn-secondary" href="#detalhes">Ver informações</a>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<section>
-  <h2>Bem-vindos</h2>
-  <p>
-    Estamos muito felizes em compartilhar esse momento especial com vocês.
-    Criamos este site para reunir todas as informações do nosso casamento.
-  </p>
-</section>
+  <main class="container">
+    <section id="historia" class="section quote-box">
+      <p>
+        “Estamos muito felizes em celebrar este momento ao lado das pessoas que fazem parte da nossa história.”
+      </p>
+      <div class="small-note">Em breve, podemos adicionar aqui fotos e um texto contando mais sobre vocês.</div>
+    </section>
 
-<section>
-  <h2>Cerimônia</h2>
-  <p><strong>Data:</strong> 12/06/2027</p>
-  <p><strong>Local:</strong> A definir</p>
-</section>
+    <section class="section">
+      <div class="section-intro">
+        <h2>Bem-vindos</h2>
+        <p>
+          Criamos este site para reunir as principais informações do nosso casamento de forma simples,
+          bonita e prática. Aqui vocês poderão acompanhar os detalhes da cerimônia, recepção,
+          confirmação de presença e, em breve, nossa lista de presentes.
+        </p>
+      </div>
+    </section>
 
-<section>
-  <h2>Recepção</h2>
-  <p><strong>Local:</strong> La Brace</p>
-</section>
+    <section id="detalhes" class="section">
+      <div class="section-intro">
+        <h2>Detalhes do grande dia</h2>
+        <p>
+          Guardem esta data com carinho. Quando tivermos todos os detalhes finais da cerimônia,
+          atualizaremos esta página.
+        </p>
+      </div>
 
-<section>
-  <h2>Confirmação de Presença</h2>
-  <p>Confirme sua presença pelo WhatsApp:</p>
-  <a class="btn" href="https://wa.me/5548999405772">Confirmar presença</a>
-</section>
+      <div class="grid grid-2">
+        <article class="info-card">
+          <h3>Cerimônia</h3>
+          <div class="info-list">
+            <div><strong>Data:</strong> 12/06/2027</div>
+            <div><strong>Cidade:</strong> Criciúma</div>
+            <div><strong>Local:</strong> A definir</div>
+            <div><strong>Observação:</strong> Assim que o local for confirmado, atualizaremos aqui.</div>
+          </div>
+        </article>
 
-<section>
-  <h2>Lista de Presentes</h2>
-  <p>Em breve disponibilizaremos nossa lista de presentes.</p>
-</section>
+        <article class="info-card">
+          <h3>Recepção</h3>
+          <div class="info-list">
+            <div><strong>Local:</strong> La Brace</div>
+            <div><strong>Cidade:</strong> Criciúma</div>
+            <div><strong>Mais detalhes:</strong> Horário e informações extras poderão ser adicionados depois.</div>
+          </div>
+        </article>
+      </div>
+    </section>
 
-<section>
-  <h2>Como chegar</h2>
-  <a class="btn btn-secondary" href="https://maps.google.com">Abrir no mapa</a>
-</section>
+    <section id="presenca" class="section">
+      <div class="section-intro">
+        <h2>Confirmação de presença</h2>
+        <p>
+          Para facilitar, a confirmação inicial pode ser feita diretamente pelo WhatsApp.
+          Depois, se vocês quiserem, podemos trocar isso por um formulário mais organizado.
+        </p>
+      </div>
 
-<footer>
-  Feito com carinho ❤️
-</footer>
+      <div class="hero-actions" style="justify-content:flex-start; margin-top: 0;">
+        <a class="btn btn-primary" href="https://wa.me/5548999405772">Confirmar pelo WhatsApp</a>
+      </div>
+    </section>
 
+    <section id="presentes" class="section">
+      <div class="section-intro">
+        <h2>Lista de presentes</h2>
+        <p>
+          Nossa lista ainda será criada. Quando estiver pronta, adicionaremos aqui os links para facilitar o acesso.
+        </p>
+      </div>
+      <div class="gift-placeholder">
+        Em breve: links da lista de presentes e outras opções que vocês desejarem incluir.
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-intro">
+        <h2>Como chegar</h2>
+        <p>
+          Quando o endereço final estiver confirmado, também podemos colocar aqui um botão com o mapa exato,
+          além de sugestões de hospedagem e estacionamento, se fizer sentido.
+        </p>
+      </div>
+      <div class="hero-actions" style="justify-content:flex-start; margin-top: 0;">
+        <a class="btn btn-secondary" href="https://maps.google.com">Abrir no mapa</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Feito com carinho para compartilhar esse momento especial ✨
+  </footer>
 </body>
 </html>
+
