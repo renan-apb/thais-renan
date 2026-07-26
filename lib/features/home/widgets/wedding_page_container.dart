@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
-/// Matches legacy `.container`: min(1100px, calc(100% - 32px)).
 class WeddingPageContainer extends StatelessWidget {
   const WeddingPageContainer({super.key, required this.child});
 
   final Widget child;
 
-  static const maxWidth = 1100.0;
-  static const horizontalPadding = 16.0;
+  static const maxWidth = 1800.0;
+  static const horizontalPadding = 0.0;
   static const breakpoint = 820.0;
 
   @override
