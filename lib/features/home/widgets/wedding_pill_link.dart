@@ -14,27 +14,18 @@ class WeddingPillLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(999),
-        child: Ink(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(999),
-            color: const Color(0xB8FFFFFF),
-            border: Border.all(color: AppColors.line),
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-          child: Text(
-            label,
-            style: const TextStyle(
-              color: AppColors.muted,
-              fontSize: 15.36,
-            ),
-          ),
+    return TextButton(
+      onPressed: onTap,
+      style: TextButton.styleFrom(
+        foregroundColor: AppColors.sageDark,
+        padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 12),
+        textStyle: const TextStyle(
+          fontSize: 13,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 1.1,
         ),
       ),
+      child: Text(label.toUpperCase()),
     );
   }
 }

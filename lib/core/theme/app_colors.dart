@@ -1,32 +1,38 @@
 import 'package:flutter/material.dart';
 
-/// Design tokens ported from legacy/index.html `:root`.
 abstract final class AppColors {
-  static const bg = Color(0xFFFFF8F8);
-  static const surface = Color(0xE0FFFFFF);
-  static const surfaceStrong = Color(0xFFFFFFFF);
-  static const text = Color(0xFF4E4046);
-  static const muted = Color(0xFF7D6871);
-  static const primary = Color(0xFFB76E79);
-  static const primaryDark = Color(0xFF9D5965);
-  static const line = Color(0xFFF0D8DE);
-  static const heading = Color(0xFF5B4650);
-  static const ampersand = Color(0xFFC38A94);
-  static const highlightText = Color(0xFF7C5A65);
-  static const infoTitle = Color(0xFF624B54);
-  static const quote = Color(0xFF735962);
-  static const smallNote = Color(0xFF9A7B85);
-  static const giftPlaceholder = Color(0xFF8B6C75);
-  static const footer = Color(0xFF92757E);
+  static const bg = Color(0xFFFFF7F6);
+  static const paper = Color(0xFFFFFCFA);
+  static const blushSoft = Color(0xFFFFF0F1);
+  static const blush = Color(0xFFF7D6D8);
+  static const rose = Color(0xFFE6818C);
+  static const roseDark = Color(0xFFB95F6B);
+  static const sage = Color(0xFF7A8B72);
+  static const sageDark = Color(0xFF465842);
+  static const sageSoft = Color(0xFFE8ECE3);
+  static const olive = Color(0xFF98A183);
+  static const terracotta = roseDark;
+  static const sand = Color(0xFFE8D8C5);
+  static const text = Color(0xFF3C4038);
+  static const muted = Color(0xFF707367);
+  static const line = Color(0xFFE8D8D5);
+  static const white = Color(0xFFFFFFFF);
 
-  static const shadow = Color(0x1F845460);
-
-  static const heroBlobLeft = Color(0x4DE7B9C3);
-  static const heroBlobRight = Color(0x99F8DCE2);
-
-  static const btnPrimaryTop = Color(0xFFC67D89);
-  static const btnPrimaryShadow = Color(0x40B76E79);
-
-  static const giftBg = Color(0xFFFFFAFB);
-  static const giftBorder = Color(0xFFE9C8D0);
+  static const primary = sageDark;
+  static const primaryDark = Color(0xFF354331);
+  static const heading = Color(0xFF344031);
+  static const ampersand = terracotta;
+  static const highlightText = sageDark;
+  static const infoTitle = sageDark;
+  static const quote = Color(0xFF4F5E49);
+  static const smallNote = muted;
+  static const giftPlaceholder = Color(0xFF666C5E);
+  static const footer = Color(0xFF686D62);
+  static const surface = paper;
+  static const surfaceStrong = white;
+  static const shadow = Color(0x183C4038);
+  static const btnPrimaryTop = sage;
+  static const btnPrimaryShadow = Color(0x35465842);
+  static const giftBg = Color(0xFFFFEEF0);
+  static const giftBorder = Color(0xFFEAC3C8);
 }

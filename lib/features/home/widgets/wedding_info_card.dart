@@ -11,43 +11,42 @@ class WeddingInfoCard extends StatelessWidget {
   final InfoBlock block;
 
   static String? _urlForLine(InfoLine line) {
-    if (line.linkUrl != null && line.linkUrl!.isNotEmpty) {
-      return line.linkUrl;
-    }
+    if (line.linkUrl != null && line.linkUrl!.isNotEmpty) return line.linkUrl;
     final value = line.value.trim();
-    if (value.startsWith('http://') || value.startsWith('https://')) {
-      return value;
-    }
+    if (value.startsWith('http://') || value.startsWith('https://')) return value;
     return null;
   }
 
   @override
   Widget build(BuildContext context) {
     final bodyStyle = Theme.of(context).textTheme.bodyMedium;
-
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.fromLTRB(32, 34, 32, 28),
       decoration: BoxDecoration(
-        color: AppColors.surfaceStrong,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.line),
+        color: AppColors.paper.withValues(alpha: .88),
+        borderRadius: BorderRadius.circular(26),
+        border: Border.all(color: AppColors.giftBorder),
+        boxShadow: const [
+          BoxShadow(
+            color: AppColors.shadow,
+            blurRadius: 28,
+            offset: Offset(0, 12),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            block.title,
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-          const SizedBox(height: 14),
+          Text(block.title, style: Theme.of(context).textTheme.titleMedium),
+          const SizedBox(height: 18),
           for (final line in block.lines) ...[
             _InfoLineRow(
               line: line,
               bodyStyle: bodyStyle,
               url: _urlForLine(line),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 12),
           ],
         ],
       ),
@@ -68,37 +67,34 @@ class _InfoLineRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final labelSpan = TextSpan(
-      text: '${line.label}: ',
+    final label = TextSpan(
+      text: '${line.label.toUpperCase()}\n',
       style: bodyStyle?.copyWith(
-        color: AppColors.text,
-        fontWeight: FontWeight.w600,
+        color: AppColors.terracotta,
+        fontSize: 11,
+        fontWeight: FontWeight.w700,
+        letterSpacing: 1.1,
       ),
     );
-
-    if (url == null) {
-      return RichText(
-        text: TextSpan(
-          style: bodyStyle,
-          children: [labelSpan, TextSpan(text: line.value)],
-        ),
-      );
-    }
+    final valueStyle = bodyStyle?.copyWith(color: AppColors.text);
 
     return RichText(
       text: TextSpan(
-        style: bodyStyle,
+        style: valueStyle,
         children: [
-          labelSpan,
+          label,
           TextSpan(
             text: line.value,
-            style: bodyStyle?.copyWith(
-              color: AppColors.primary,
-              decoration: TextDecoration.underline,
-              decorationColor: AppColors.primary,
-            ),
-            recognizer: TapGestureRecognizer()
-              ..onTap = () => launchExternalUrl(url!),
+            style: url == null
+                ? valueStyle
+                : valueStyle?.copyWith(
+                    color: AppColors.sageDark,
+                    decoration: TextDecoration.underline,
+                  ),
+            recognizer: url == null
+                ? null
+                : (TapGestureRecognizer()
+                  ..onTap = () => launchExternalUrl(url!)),
           ),
         ],
       ),

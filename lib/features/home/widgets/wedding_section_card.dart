@@ -6,13 +6,15 @@ class WeddingSectionCard extends StatelessWidget {
   const WeddingSectionCard({
     super.key,
     required this.child,
-    this.padding = const EdgeInsets.all(30),
+    this.padding = const EdgeInsets.symmetric(horizontal: 44, vertical: 52),
     this.gradient,
+    this.backgroundColor = AppColors.paper,
   });
 
   final Widget child;
   final EdgeInsetsGeometry padding;
   final Gradient? gradient;
+  final Color backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -21,16 +23,8 @@ class WeddingSectionCard extends StatelessWidget {
       padding: padding,
       decoration: BoxDecoration(
         gradient: gradient,
-        color: gradient == null ? AppColors.surface : null,
-        borderRadius: BorderRadius.circular(28),
-        border: Border.all(color: const Color(0xE6F0D8DE)),
-        boxShadow: const [
-          BoxShadow(
-            color: AppColors.shadow,
-            blurRadius: 50,
-            offset: Offset(0, 18),
-          ),
-        ],
+        color: gradient == null ? backgroundColor : null,
+        border: Border.all(color: AppColors.line),
       ),
       child: child,
     );
@@ -42,29 +36,46 @@ class WeddingSectionIntro extends StatelessWidget {
     super.key,
     required this.title,
     required this.body,
+    this.centered = false,
   });
 
   final String title;
   final String body;
+  final bool centered;
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment:
+          centered ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
         Text(
-          title,
-          style: Theme.of(context).textTheme.titleLarge,
+          '✦',
+          style: TextStyle(
+            color: AppColors.terracotta.withValues(alpha: .8),
+            fontSize: 16,
+          ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 10),
+        Text(
+          title,
+          textAlign: centered ? TextAlign.center : TextAlign.start,
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontFamily: 'Great Vibes',
+                fontSize: MediaQuery.sizeOf(context).width < 600 ? 42 : 54,
+                color: AppColors.roseDark,
+              ),
+        ),
+        const SizedBox(height: 16),
         ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 760),
+          constraints: const BoxConstraints(maxWidth: 720),
           child: Text(
             body,
+            textAlign: centered ? TextAlign.center : TextAlign.start,
             style: Theme.of(context).textTheme.bodyLarge,
           ),
         ),
-        const SizedBox(height: 22),
+        const SizedBox(height: 30),
       ],
     );
   }
