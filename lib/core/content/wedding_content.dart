@@ -8,10 +8,18 @@ class WeddingNavItem {
 }
 
 class InfoLine {
-  const InfoLine({required this.label, required this.value});
+  const InfoLine({
+    required this.label,
+    required this.value,
+    this.linkUrl,
+  });
 
   final String label;
   final String value;
+
+  /// When set, [value] is shown as link text and this URL is opened on tap.
+  /// If null and [value] starts with `http://` or `https://`, [value] is used as the URL.
+  final String? linkUrl;
 }
 
 class InfoBlock {
@@ -38,7 +46,7 @@ abstract final class WeddingContent {
       'Com muito amor e alegria, criamos este espaço para compartilhar com vocês '
       'os detalhes de um dos dias mais especiais das nossas vidas.';
 
-  static const eventDateLabel = '12 de junho de 2027';
+  static const eventDateLabel = '10 de julho de 2027';
   static const eventLocationLabel = 'Nova Veneza - SC';
 
   static const whatsappUrl = 'https://wa.me/5548999405772';
@@ -74,12 +82,15 @@ abstract final class WeddingContent {
   static const ceremony = InfoBlock(
     title: 'Cerimônia',
     lines: [
-      InfoLine(label: 'Data', value: '12/06/2027'),
+      InfoLine(label: 'Data', value: '10/07/2027, às 16:30'),
       InfoLine(label: 'Cidade', value: 'Nova Veneza - SC'),
-      InfoLine(label: 'Local', value: 'A definir'),
       InfoLine(
-        label: 'Observação',
-        value: 'Assim que o local for confirmado, atualizaremos aqui.',
+          label: 'Local',
+          value: 'Santuário da Diocesano Nossa Senhora do Caravaggio'),
+      InfoLine(
+        label: 'Endereço',
+        value: 'Abrir no Google Maps',
+        linkUrl: 'https://maps.app.goo.gl/1Jogb5iheGxt6LL46',
       ),
     ],
   );
@@ -87,11 +98,12 @@ abstract final class WeddingContent {
   static const reception = InfoBlock(
     title: 'Recepção',
     lines: [
-      InfoLine(label: 'Local', value: 'La Brace'),
-      InfoLine(label: 'Cidade', value: 'Criciúma'),
+      InfoLine(label: 'Local', value: 'Casa de eventos La Brace'),
+      InfoLine(label: 'Cidade', value: 'Nova Veneza - SC'),
       InfoLine(
-        label: 'Mais detalhes',
-        value: 'Horário e informações extras poderão ser adicionados depois.',
+        label: 'Endereço',
+        value: 'Abrir no Google Maps',
+        linkUrl: 'https://maps.app.goo.gl/ZgSfDKRYYy49sKJK8',
       ),
     ],
   );
