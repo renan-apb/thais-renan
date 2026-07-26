@@ -1,11 +1,11 @@
 {
-    "name": "thais_renan",
-    "short_name": "thais_renan",
+    "name": "Thaís & Renan",
+    "short_name": "Thaís & Renan",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#FFF8F8",
+    "theme_color": "#B76E79",
+    "description": "Com muito amor e alegria, compartilhamos os detalhes do casamento de Thaís e Renan.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
